@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+				<!-- slide 1 -->
+				<section>A picture worth a thousand formulae</section>
+
+				<!-- slide 2 -->
+				<section data-markdown>
+					<textarea data-template>
+						# 1990:
+
+						Tim Berners Lee propone il World Wide Web, introducendo il concetto di _URL_, _HTTP_ e _HTML_
+					</textarea>
+				</section>
+
+				<section>
+						Ogni pagina ha un indirizzo che la identifica univocamente 
+					
+						<div class="mxgraph" style="max-width:100%;border:1px solid transparent; text-align: center" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0\&quot; version=\&quot;8.6.2\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;8d6780ff-3ec3-4e2c-0628-e6a70993b9ea\&quot; name=\&quot;Page-1\&quot;&gt;7VjLctowFP0aL8v4bbxMaGg2nemURdbCutgqsuUKEZN+fSUs+Q3JdCDNZMiC2EfSlXTOudIFy1vkh28cldl3hoFaro0PlvfVct3QduSnAl5qwHP9Gkg5wTXktMCK/AEN2hrdEwy7XkfBGBWk7IMJKwpIRA9DnLOq323DaH/WEqUwAlYJomP0iWCR1eg8sFv8EUiamZkdW7esUbJNOdsXej5Lbl19qrYcmUC68y5DmFUdyHuwvAVnTNRP+WEBVPFqOKvHLU+0NovmUIi3DPDqAc+I7sEs97gu8WKIOG4FVH/H8u6rjAhYlShRrZVUXmKZyKlu3hBKF4wyLt8LVshO9zvB2RYMKNmIlvEyWjYtht1AIno1wAUcTu7IaXiS3gOWg+Avsose4PqaWu07xyhWtSo6hv6sq6ABkXZO2sRuCZQPmsNpPoPX+YQC3yl/tgx1+HsrWZ5Efu3zUudN2HAHeGTrV5nrMBNMEGMwDhQJ8twPP0WWnuEHI3LiVphwIEw84HvH9jwBParr2UEgb6jwMJBAPAUxCnTUrtn2m+QMR3JmQqgD6E5FdZdVVc0qsiUlYIJmjKcjtaWRxTmJtQUm8gZRkhbyNZHygcTvVVoQeUDd6YacYKymmczJNmttFZ4VomMqHM+RHWl8pRfr6PclyglV1D4CfQY144UScz6QzR0npj9hv0ukpeNM5GVIhd5yT7Lw956Zhi+7Y35Jte15eWjb5FOq/i9kHziOT97zqV653HS9+HotVnOnfET3TbpqYEvY4GSdXMhtQd9trj1xDdgTdgsvYTf3pN3WRq4nc2x05Fy3Wt6ENEJGg2MjHAs5dWt5l9Dx85VHfhjP4u5fn9ypLLlaseT4t2rpVLXkxwPb+/9YLQXD/BkGuly15Iyr33G5xAFjImYJyz/wIfe/a6XAPpel0TsWTuMK+FY4fer71o/OXhBT36avVkZFr5dRP4/Hya2GOq9pfFZT52oVlXxtf8uqb5T2x0Lv4S8=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						Le informazioni sul web sono progettate per il consumo umano
+					</textarea>
+				</section>
+
+				<!-- -->
+				<section>
+					<div style='font-size: x-large;'>
+					<pre><code style='overflow: visible'>
+						Select ?idVeicolo ?inizioStato ?fineStato ?idFormalitaGeneratrice ?idFormalitaOriginaria ?codiceFormalitaOriginaria 
+						?dataAccettazioneFormalitaOriginaria ?ufficioCompetenteFormalitaOriginaria ?serieTarga ?numeroTarga ?serieTargaPrecedente 
+						?numeroTargaPrecedente ?telaio ?kw ?cilindrata ?peso ?portata ?tara ?classe ?uso ?carrozzeria ?specialita ?alimentazione 
+						?alimentazioneDTT ?dataImmatricolazione ?codiceUltimaFormalitaDiParte ?dataUltimaFormalitaDiParte
+						where { 
+						    ?veicolo aci:ID_veicolo ?idVeicolo.
+						    ?veicolo aci:ha_stato_di_veicolo ?stato.
+						    ?stato a aci:Stato_rappresentato_valido.
+						    ?stato aci:ha_targa ?targa.
+						    ?targa aci:numero_targa ?numeroTarga.
+						    ?targa aci:serie_targa ?serieTarga.
+						    ?stato aci:ha_formalita_originaria ?formalitaOriginaria.
+						    ?formalitaOriginaria aci:ID_formalita ?idFormalitaOriginaria.
+						    ?formalitaOriginaria aci:codice_tipo ?codiceFormalitaOriginaria.
+						    ?evento aci:determina_stato ?stato.
+						    ?formalitaGeneratrice aci:formalita_genera_evento ?evento.
+						    ?formalitaGeneratrice aci:ID_formalita ?idFormalitaGeneratrice.  
+						    ?stato aci:inizio_stato_del_mondo ?inizioStato.
+						    ?stato aci:fine_stato_del_mondo ?fineStato.
+						    ?formalitaOriginaria aci:data_accettazione_formalita ?dataAccettazioneFormalitaOriginaria.
+						    ?formalitaOriginaria aci:est_di_competenza_di_ufficio ?ufficio.
+						    ?ufficio aci:descrizione_ufficio ?ufficioCompetenteFormalitaOriginaria.
+						    ?stato aci:codice_tipo_ultima_formalita_di_parte ?codiceUltimaFormalitaDiParte.
+						    ?stato aci:data_accettazione_ultima_formalita_di_parte ?dataUltimaFormalitaDiParte.
+						    ?stato aci:ha_targa_precedente ?targaPrecedente.
+						    ?targaPrecedente aci:numero_targa ?numeroTargaPrecedente.
+						    ?targaPrecedente  aci:serie_targa ?serieTargaPrecedente.
+						    ?stato aci:numero_telaio ?telaio.
+						    ?stato aci:kw ?kw.
+						    ?stato aci:cilindrata ?cilindrata.  
+						    ?stato aci:peso_complessivo ?peso.
+						    ?stato aci:portata ?portata.
+						    ?stato aci:tara ?tara.
+						    ?stato aci:classe_veicolo ?classe.
+						    ?stato aci:destinazione_di_uso ?uso.
+						    ?stato aci:carrozzeria ?carrozzeria.
+						    ?stato aci:descrizione_specialita ?specialita.
+						    ?stato aci:data_immatricolazione ?dataImmatricolazione.  
+						    ?stato aci:alimentazione ?alimentazione.
+						    ?stato aci:alimentazione_DTT ?alimentazioneDTT
+						    FILTER(?idVeicolo >= '99966200000'^^xsd:string && ?idVeicolo <= '99966207000'^^xsd:string)
+						 }
+						 </code></pre>
+					</div>
+				</section>
+
+				<!-- -->
+				<section data-markdown>
+					<textarea data-template>
+						**Questions?**
+
+						Sara Di Bartolomeo   
+						dibartolomeo.sara@gmail.com   
+						https://github.com/picorana
+					</textarea>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script type="text/javascript" src="https://www.draw.io/js/viewer.min.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
