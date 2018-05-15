@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -20,13 +22,68 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.12/cytoscape.min.js"></script>
+		<script src="./GrapholScape/js/examples.js"></script>
+		<script src="./GrapholScape/js/main.js"></script>
+		<script src="./GrapholScape/js/graphol_scape.js"></script>
+		<script src="./GrapholScape/js/ui.js"></script>
+		<script src="./painless_sparql/dist/painless_sparql.js"></script>
+
+		<link href="https://rawgit.com/picorana/painless_sparql/master/css/style.css" rel="stylesheet">
+
+		<style>
+		#cy {width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: 100}
+		div.graph {
+		  border-width: 0.1em;
+		  border-style: solid;
+		  border-color: transparent;
+		  text-align: left;
+		  height: 80vh;
+		}
+		div.half-graph {
+		  border-width: 0.1em;
+		  border-style: solid;
+		  border-color: transparent;
+		  text-align: left;
+		  height: 80vh;
+		  position: absolute;
+		  left:0;
+		}
+
+		div.query {
+		  border-width: 0.1em;
+		  border-style: solid;
+		  border-color: transparent;
+		  text-align: left;
+		  height: 80vh;
+		  background-color: #fff;
+		  right: 0;
+		  position: absolute;
+		}
+
+		</style>
+
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				
+
 				<!-- slide 1 -->
-				<section>A picture worth a thousand formulae</section>
+				<section>A picture is worth a thousand formulae</section>
+
+				<section id='graph3'>
+					<div id='cy3' class='half-graph'></div><div id='cy4' class='query'></div>
+				</section>
+
+				<section id='graph1'>
+					<div id='cy1' class='graph'></div>
+				</section>
+
+				<section id='graph2'>
+					<div id='cy2' class='graph'></div>
+				</section>
+				
 
 				<!-- slide 2 -->
 				<section data-markdown>
@@ -40,15 +97,127 @@
 				<section>
 						Ogni pagina ha un indirizzo che la identifica univocamente 
 					
-						<div class="mxgraph" style="max-width:100%;border:1px solid transparent; text-align: center" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0\&quot; version=\&quot;8.6.2\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;8d6780ff-3ec3-4e2c-0628-e6a70993b9ea\&quot; name=\&quot;Page-1\&quot;&gt;7VjLctowFP0aL8v4bbxMaGg2nemURdbCutgqsuUKEZN+fSUs+Q3JdCDNZMiC2EfSlXTOudIFy1vkh28cldl3hoFaro0PlvfVct3QduSnAl5qwHP9Gkg5wTXktMCK/AEN2hrdEwy7XkfBGBWk7IMJKwpIRA9DnLOq323DaH/WEqUwAlYJomP0iWCR1eg8sFv8EUiamZkdW7esUbJNOdsXej5Lbl19qrYcmUC68y5DmFUdyHuwvAVnTNRP+WEBVPFqOKvHLU+0NovmUIi3DPDqAc+I7sEs97gu8WKIOG4FVH/H8u6rjAhYlShRrZVUXmKZyKlu3hBKF4wyLt8LVshO9zvB2RYMKNmIlvEyWjYtht1AIno1wAUcTu7IaXiS3gOWg+Avsose4PqaWu07xyhWtSo6hv6sq6ABkXZO2sRuCZQPmsNpPoPX+YQC3yl/tgx1+HsrWZ5Efu3zUudN2HAHeGTrV5nrMBNMEGMwDhQJ8twPP0WWnuEHI3LiVphwIEw84HvH9jwBParr2UEgb6jwMJBAPAUxCnTUrtn2m+QMR3JmQqgD6E5FdZdVVc0qsiUlYIJmjKcjtaWRxTmJtQUm8gZRkhbyNZHygcTvVVoQeUDd6YacYKymmczJNmttFZ4VomMqHM+RHWl8pRfr6PclyglV1D4CfQY144UScz6QzR0npj9hv0ukpeNM5GVIhd5yT7Lw956Zhi+7Y35Jte15eWjb5FOq/i9kHziOT97zqV653HS9+HotVnOnfET3TbpqYEvY4GSdXMhtQd9trj1xDdgTdgsvYTf3pN3WRq4nc2x05Fy3Wt6ENEJGg2MjHAs5dWt5l9Dx85VHfhjP4u5fn9ypLLlaseT4t2rpVLXkxwPb+/9YLQXD/BkGuly15Iyr33G5xAFjImYJyz/wIfe/a6XAPpel0TsWTuMK+FY4fer71o/OXhBT36avVkZFr5dRP4/Hya2GOq9pfFZT52oVlXxtf8uqb5T2x0Lv4S8=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
-
+						<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0\&quot; version=\&quot;8.6.2\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;8d6780ff-3ec3-4e2c-0628-e6a70993b9ea\&quot; name=\&quot;Page-1\&quot;&gt;7VtNc5swEP01PjaDJDBwTNy4uXSmUx86PcqgYDWAXCwHJ7++wkhgQJbdDKapQw8prD55b1f7spAJmiW7Lxler76ykMQTaIW7Cfo8gdBzofhZGF5Kg+1apSHKaFiaQG1Y0FcijarbloZk0+jIGYs5XTeNAUtTEvCGDWcZy5vdHlncXHWNI9IxLAIcd60/aMhX8rEcq7Y/EBqt1MrAki1LHDxFGdumcr0JRBBKMBKsJpKdNyscsvzAhO4naJYxxsurZDcjcYGrwqwcNz/SWm06Iyk/ZwAqBzzjeEvUdvf74i8KiP2jkKI/mKC7fEU5WaxxULTmgnlhW/Ekls2PNI5nLGaZuE9ZKjrdbXjGnogyCjTcuT9351WLQtcRFrkbknGyO/pEoMJJ+B5hCeHZi+giB0BbQiv9DijG8ppFoOBfHTKojFh6TlTNXQMoLiSGejyd03iSNLwt/LNG6AC/c8FCwvJrm6xl3Ewr7EjYceuTyB0g42iAUbaMxJjT5+b0OrDkCt8YFQvXxExbxPgtvDdsmwVEjjr02dZEqM1weyKOs4jwzkR77qrHPovOaYfOFefFAXRbzArneZ7f5PSJrklI8Q3Log7bwpG5iWLpApq4wTGNUnEbCPqIsN8VYUHFAXUrGxIahsUy2piso9YqpmcpP3Cq0Pew5Ur7Qm4WyPs5TmhcQPtA4mdSrNhTYHot2mA3MG2N+/URlgBo4nIac/nIDcqmv7dMNXza7ONLsG15613dJq6i4v+Z6EP244Mhr8qdi4cuN1/uZVLllPfofVqvarkleQyDZdCTtzlNb4OWJg1YGneb9uFu8Ki7LRVdP9SxcUDnsuZyJFIR6baOjWmXSF3WQn3weH3yyJ76N/7hvya4uii5mFgC9qiWjqkl22+5vf1GteS046c9UX9qCXTVb1cuZSQMKb8JWPKOD7l/rZUcyxSl7oDCqauAR+F01fnWdo0JQvfb9MVklHtaRn3fHyejhjJz6hs5BcMpKnhGyv/PFJVr2QZwoeUMqKjG+tNxReUqcBQztvM2ReVZJybqT1FpClCFhsIJfmXpqKHMcWmb4hK43bi8lIiCx/PYKKKuMuG6wJgTHE1OuJSIgt5pEXW7P09GEWXmFBk5BV1OLyai/KsTUbZtUqjQH7IspSgaRZSmLNWqJqG2P59dlnJOTNSfiELdlz+FiHphW75dklFFmQPTMwamphh/KRWF4KiiPlbGtR2T71WfAQyhopDuTVBLRf0sD5RRRplJNdYXkeYF1KVkFLq+WpRnPK0BGrIWhcZa1FEZ5YOm+qmqEX8ro/z2a8L2RD3KKH0tavz86bzQ9KH5xftw5Sg0lqM+WM71zO9/vAHLUeiMctT4adSZRwow0mpfrCIlbutP1MtUUv8NALr/Aw==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
 				</section>
 
-				<section data-markdown>
-					<textarea data-template>
+				<section>
+					
 						Le informazioni sul web sono progettate per il consumo umano
-					</textarea>
+
+						<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile userAgent=\&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0\&quot; version=\&quot;8.6.2\&quot; editor=\&quot;www.draw.io\&quot; type=\&quot;device\&quot;&gt;&lt;diagram id=\&quot;8d6780ff-3ec3-4e2c-0628-e6a70993b9ea\&quot; name=\&quot;Page-1\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+					
 				</section>
+
+				<section>
+						<h1> 1998 </h1>
+
+						Semantic Web
+
+				</section>
+
+				<section>
+					<div style="font-size: x-large">source: <a href="https://www.w3.org/DesignIssues/Semantic.html">Semantic Web Road map: <i>A road map for the future, an architectural plan untested by anything except thought experiments.</i></a></div><br><br>
+
+					<div style="font-size: x-large;"><i>The Web was designed as an information space, with the goal that <b>it should be useful not only for human-human communication, but also that machines would be able to participate and help.</b> One of the major obstacles to this has been the fact that most information on the Web is designed for human consumption, and even if it was derived from a database with well defined meanings (in at least some terms) for its columns, that the structure of the data is not evident to a robot browsing the web. Leaving aside the artificial intelligence problem of training machines to behave like people, the Semantic Web approach instead develops languages for expressing information in a machine processable form. <br> <br>
+
+					This document gives a road map - a sequence for the incremental introduction of technology to take us, step by step, from the Web of today to a Web in which machine reasoning will be ubiquitous and devastatingly powerful. <br><br>[...]</i></div>
+				</section>
+
+				<section>
+					E se gli indirizzi identificassero dei concetti?
+					<div style='border-width: 5px; border-color: white'>Persona</div>
+				</section>
+
+				<section>
+					
+					Il mondo reale non funziona cosi' <br>
+					
+					<span class="fragment">
+					- Pianificazione sbagliata
+					- Documentazione
+					- Problemi con la naming convention
+					</span>
+				</section>
+
+				<section>
+						<table style="font-size: x-large">
+					    	<thead><tr>
+					            <th>CUC</th>
+					            <th>TS_START</th>
+					            <th>TS_END</th>
+					            <th>ID_GROUP</th>
+					            <th>FLAG_CP</th>
+					            <th>FLAG_CF</th>
+					            <th>FATTURATO</th>
+					            <th>FLAG_FATT</th>
+					            <th>...</th>
+					        </tr></thead>
+					        <tbody><tr>
+					            <td>124589</td>
+					            <td>30-lug-2004</td>
+					            <td>1-gen-9999</td>
+					            <td>92736</td>
+					            <td>S</td>
+					            <td>N</td>
+					            <td>195000,00</td>
+					            <td>N</td>
+					        </tr>
+					        <tr>
+					            <td>140904</td>
+					            <td>15-mag-2001</td>
+					            <td>15-giu-2005</td>
+					            <td>35060</td>
+					            <td>N</td>
+					            <td>N</td>
+					            <td>230600,00</td>
+					            <td>N</td>
+					        </tr>
+					        <tr>
+					            <td>124589</td>
+					            <td>5-mag-2001</td>
+					            <td>13-mag-2001</td>
+					            <td>92736</td>
+					            <td>N</td>
+					            <td>S</td>
+					            <td>195000,00</td>
+					            <td>S</td>
+					        </tr>
+					        <tr>
+					            <td>-452901</td>
+					            <td>13-mag-2001</td>
+					            <td>27-lug-2004</td>
+					            <td>92770</td>
+					            <td>S</td>
+					            <td>N</td>
+					            <td>392000,00</td>
+					            <td>N</td>
+					        </tr>
+					        <tr>
+					            <td>129008</td>
+					            <td>10-mag-2001</td>
+					            <td>1-gen-999</td>
+					            <td>62010</td>
+					            <td>N</td>
+					            <td>S</td>
+					            <td>247000,00</td>
+					            <td>S</td>
+					        </tr>
+					        <tr>
+					            <td>...</td>
+					            <td>...</td>
+					            <td>...</td>
+					            <td>...</td>
+					            <td>...</td>
+					            <td>...</td>
+					            <td>...</td>
+					            <td>...</td>
+					        </tr></tbody>
+					</table>
+
+					<div style="margin-bottom: -10%; font-size: medium">source: <a href="http://wp.sigmod.org/?p=871">Ontology-based data management, Maurizio Lenzerini, ACM SIGMOD Blog</a></div>
+				</section>
+
+				
 
 				<!-- -->
 				<section>
@@ -126,10 +295,21 @@
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/chalkboard/chalkboard.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
+				],
+				keyboard: {
+				    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+				    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+				    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+				     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+				    68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+				}
 			});
 		</script>
+		<script src='graph1.js'></script>
+		<script src='graph2.js'></script>
+		<script src='graph3.js'></script>
 	</body>
 </html>
