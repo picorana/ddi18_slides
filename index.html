@@ -72,17 +72,14 @@
 				<!-- slide 1 -->
 				<section>A picture is worth a thousand formulae</section>
 
-				<section id='graph3'>
-					<div id='cy3' class='half-graph'></div><div id='cy4' class='query'></div>
-				</section>
+				
 
+				<!--
 				<section id='graph1'>
 					<div id='cy1' class='graph'></div>
-				</section>
+				</section> -->
 
-				<section id='graph2'>
-					<div id='cy2' class='graph'></div>
-				</section>
+				
 				
 
 				<!-- slide 2 -->
@@ -124,19 +121,8 @@
 				</section>
 
 				<section>
-					E se gli indirizzi identificassero dei concetti?
+					<a>http://www.w3.org/ns/person#</a>
 					<div style='border-width: 5px; border-color: white'>Persona</div>
-				</section>
-
-				<section>
-					
-					Il mondo reale non funziona cosi' <br>
-					
-					<span class="fragment">
-					- Pianificazione sbagliata
-					- Documentazione
-					- Problemi con la naming convention
-					</span>
 				</section>
 
 				<section>
@@ -217,55 +203,118 @@
 					<div style="margin-bottom: -10%; font-size: medium">source: <a href="http://wp.sigmod.org/?p=871">Ontology-based data management, Maurizio Lenzerini, ACM SIGMOD Blog</a></div>
 				</section>
 
-				
+				<section>
+					owl <br>
+					<fragment>
+						<div style='font-size: medium; text-align: left; display:inline-block;'>
+						<h3>rdf/xml</h3>
+						&lt;owl:Class&nbsp;rdf:ID=&quot;WineDescriptor&quot;&nbsp;/&gt;
+<br>
+<br>						&lt;owl:Class&nbsp;rdf:ID=&quot;WineColor&quot;&gt;
+<br>						&nbsp;&nbsp;&lt;rdfs:subClassOf&nbsp;rdf:resource=&quot;#WineDescriptor&quot;&nbsp;/&gt;
+<br>						&lt;/owl:Class&gt;
+<br>
+<br>						&lt;owl:ObjectProperty&nbsp;rdf:ID=&quot;hasWineDescriptor&quot;&gt;
+<br>						&nbsp;&nbsp;&lt;rdfs:domain&nbsp;rdf:resource=&quot;#Wine&quot;&nbsp;/&gt;
+<br>						&nbsp;&nbsp;&lt;rdfs:range&nbsp;&nbsp;rdf:resource=&quot;#WineDescriptor&quot;&nbsp;/&gt;
+<br>						&lt;/owl:ObjectProperty&gt;
+<br>
+<br>						&lt;owl:ObjectProperty&nbsp;rdf:ID=&quot;hasColor&quot;&gt;
+<br>						&nbsp;&nbsp;&lt;rdfs:subPropertyOf&nbsp;rdf:resource=&quot;#hasWineDescriptor&quot;&nbsp;/&gt;
+<br>						&nbsp;&nbsp;&lt;rdfs:range&nbsp;rdf:resource=&quot;#WineColor&quot;&nbsp;/&gt;
+<br>						&lt;/owl:ObjectProperty&gt;
+<br>						&lt;/rdfs:range&gt;
+						</div>
+						<div style='font-size: medium; text-align: left; display: inline-block;'>
+						<h3>Turtle</h3>
+:Teenager&nbsp;rdf:type&nbsp;owl:Class&nbsp;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;owl:equivalentClass&nbsp;[&nbsp;rdf:type&nbsp;owl:Class&nbsp;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;owl:intersectionOf&nbsp;(&nbsp;:&nbsp;Person
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;rdf:type&nbsp;owl:Restriction&nbsp;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;owl:onProperty&nbsp;:hasAge&nbsp;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;owl:someValuesFrom&nbsp;[&nbsp;rdf:type&nbsp;rdfs:Datatype&nbsp;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;owl:onDatatype&nbsp;xsd:integer&nbsp;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;owl:withRestrictions&nbsp;(&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;xsd:maxExclusive&nbsp;&quot;20&quot;^^xsd:integer&nbsp;]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;xsd:minExclusive&nbsp;&quot;12&quot;^^xsd:integer]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]&nbsp;.
+
+						</div>
+					</fragment>
+				</section>
+
+				<section id='graph2'>
+					<div id='cy2' class='graph'></div>
+				</section>
+
+				<section data-markdown>
+				<textarea>
+				<pre><code>
+					select ?auto ?idTarga
+					where {
+						?auto rdf:type automobile
+						?auto x:haTarga ?targa
+						?targa x:idTarga ?idTarga
+						?auto x:colore ?colore
+					}
+					</code></pre>
+				</textarea>
+				</section>
+
+				<section id='graph3'>
+					<div id='cy3' class='half-graph'></div><div id='cy4' class='query'></div>
+				</section>
 
 				<!-- -->
 				<section>
-					<div style='font-size: x-large;'>
-					<pre><code style='overflow: visible'>
-						Select ?idVeicolo ?inizioStato ?fineStato ?idFormalitaGeneratrice ?idFormalitaOriginaria ?codiceFormalitaOriginaria 
-						?dataAccettazioneFormalitaOriginaria ?ufficioCompetenteFormalitaOriginaria ?serieTarga ?numeroTarga ?serieTargaPrecedente 
-						?numeroTargaPrecedente ?telaio ?kw ?cilindrata ?peso ?portata ?tara ?classe ?uso ?carrozzeria ?specialita ?alimentazione 
-						?alimentazioneDTT ?dataImmatricolazione ?codiceUltimaFormalitaDiParte ?dataUltimaFormalitaDiParte
-						where { 
-						    ?veicolo aci:ID_veicolo ?idVeicolo.
-						    ?veicolo aci:ha_stato_di_veicolo ?stato.
-						    ?stato a aci:Stato_rappresentato_valido.
-						    ?stato aci:ha_targa ?targa.
-						    ?targa aci:numero_targa ?numeroTarga.
-						    ?targa aci:serie_targa ?serieTarga.
-						    ?stato aci:ha_formalita_originaria ?formalitaOriginaria.
-						    ?formalitaOriginaria aci:ID_formalita ?idFormalitaOriginaria.
-						    ?formalitaOriginaria aci:codice_tipo ?codiceFormalitaOriginaria.
-						    ?evento aci:determina_stato ?stato.
-						    ?formalitaGeneratrice aci:formalita_genera_evento ?evento.
-						    ?formalitaGeneratrice aci:ID_formalita ?idFormalitaGeneratrice.  
-						    ?stato aci:inizio_stato_del_mondo ?inizioStato.
-						    ?stato aci:fine_stato_del_mondo ?fineStato.
-						    ?formalitaOriginaria aci:data_accettazione_formalita ?dataAccettazioneFormalitaOriginaria.
-						    ?formalitaOriginaria aci:est_di_competenza_di_ufficio ?ufficio.
-						    ?ufficio aci:descrizione_ufficio ?ufficioCompetenteFormalitaOriginaria.
-						    ?stato aci:codice_tipo_ultima_formalita_di_parte ?codiceUltimaFormalitaDiParte.
-						    ?stato aci:data_accettazione_ultima_formalita_di_parte ?dataUltimaFormalitaDiParte.
-						    ?stato aci:ha_targa_precedente ?targaPrecedente.
-						    ?targaPrecedente aci:numero_targa ?numeroTargaPrecedente.
-						    ?targaPrecedente  aci:serie_targa ?serieTargaPrecedente.
-						    ?stato aci:numero_telaio ?telaio.
-						    ?stato aci:kw ?kw.
-						    ?stato aci:cilindrata ?cilindrata.  
-						    ?stato aci:peso_complessivo ?peso.
-						    ?stato aci:portata ?portata.
-						    ?stato aci:tara ?tara.
-						    ?stato aci:classe_veicolo ?classe.
-						    ?stato aci:destinazione_di_uso ?uso.
-						    ?stato aci:carrozzeria ?carrozzeria.
-						    ?stato aci:descrizione_specialita ?specialita.
-						    ?stato aci:data_immatricolazione ?dataImmatricolazione.  
-						    ?stato aci:alimentazione ?alimentazione.
-						    ?stato aci:alimentazione_DTT ?alimentazioneDTT
-						    FILTER(?idVeicolo >= '99966200000'^^xsd:string && ?idVeicolo <= '99966207000'^^xsd:string)
-						 }
-						 </code></pre>
+					<div style='font-size: medium; text-align: left; display: inline-block; width: 50%; float: left'>
+						Select&nbsp;?idVeicolo&nbsp;?inizioStato&nbsp;?fineStato&nbsp;?idFormalitaGeneratrice&nbsp;?idFormalitaOriginaria&nbsp;?codiceFormalitaOriginaria&nbsp;?dataAccettazioneFormalitaOriginaria&nbsp;?ufficioCompetenteFormalitaOriginaria&nbsp;?serieTarga&nbsp;?numeroTarga&nbsp;?serieTargaPrecedente&nbsp;?numeroTargaPrecedente&nbsp;?telaio&nbsp;?kw&nbsp;?cilindrata&nbsp;?peso&nbsp;?portata&nbsp;?tara&nbsp;?classe&nbsp;?uso&nbsp;?carrozzeria&nbsp;?specialita&nbsp;?alimentazione&nbsp;?alimentazioneDTT&nbsp;?dataImmatricolazione&nbsp;?codiceUltimaFormalitaDiParte&nbsp;?dataUltimaFormalitaDiParte
+<br>						where&nbsp;{&nbsp;
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?veicolo&nbsp;aci:ID_veicolo&nbsp;?idVeicolo.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?veicolo&nbsp;aci:ha_stato_di_veicolo&nbsp;?stato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;a&nbsp;aci:Stato_rappresentato_valido.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:ha_targa&nbsp;?targa.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targa&nbsp;aci:numero_targa&nbsp;?numeroTarga.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targa&nbsp;aci:serie_targa&nbsp;?serieTarga.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:ha_formalita_originaria&nbsp;?formalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:ID_formalita&nbsp;?idFormalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:codice_tipo&nbsp;?codiceFormalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?evento&nbsp;aci:determina_stato&nbsp;?stato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaGeneratrice&nbsp;aci:formalita_genera_evento&nbsp;?evento.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaGeneratrice&nbsp;aci:ID_formalita&nbsp;?idFormalitaGeneratrice.&nbsp;&nbsp;
+					<br>	&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:inizio_stato_del_mondo&nbsp;?inizioStato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:fine_stato_del_mondo&nbsp;?fineStato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:data_accettazione_formalita&nbsp;?dataAccettazioneFormalitaOriginaria.
+
+					</div>
+					<div style='font-size: medium; text-align: left; display: inline-block; width: 50%; float: right'>
+
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:est_di_competenza_di_ufficio&nbsp;?ufficio.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?ufficio&nbsp;aci:descrizione_ufficio&nbsp;?ufficioCompetenteFormalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:codice_tipo_ultima_formalita_di_parte&nbsp;?codiceUltimaFormalitaDiParte.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:data_accettazione_ultima_formalita_di_parte&nbsp;?dataUltimaFormalitaDiParte.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:ha_targa_precedente&nbsp;?targaPrecedente.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targaPrecedente&nbsp;aci:numero_targa&nbsp;?numeroTargaPrecedente.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targaPrecedente&nbsp;&nbsp;aci:serie_targa&nbsp;?serieTargaPrecedente.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:numero_telaio&nbsp;?telaio.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:kw&nbsp;?kw.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:cilindrata&nbsp;?cilindrata.&nbsp;&nbsp;
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:peso_complessivo&nbsp;?peso.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:portata&nbsp;?portata.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:tara&nbsp;?tara.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:classe_veicolo&nbsp;?classe.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:destinazione_di_uso&nbsp;?uso.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:carrozzeria&nbsp;?carrozzeria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:descrizione_specialita&nbsp;?specialita.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:data_immatricolazione&nbsp;?dataImmatricolazione.&nbsp;&nbsp;
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:alimentazione&nbsp;?alimentazione.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:alimentazione_DTT&nbsp;?alimentazioneDTT
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;FILTER(?idVeicolo&nbsp;&gt;=&nbsp;'99966200000'^^xsd:string&nbsp;&amp;&amp;&nbsp;?idVeicolo&nbsp;&lt;=&nbsp;'99966207000'^^xsd:string)
+<br>						&nbsp;}
 					</div>
 				</section>
 
@@ -277,6 +326,7 @@
 						Sara Di Bartolomeo   
 						dibartolomeo.sara@gmail.com   
 						https://github.com/picorana
+						https://github.com/picorana/painless_sparql
 					</textarea>
 				</section>
 
