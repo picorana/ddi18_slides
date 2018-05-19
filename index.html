@@ -115,9 +115,13 @@
 				<section>
 					<div style="font-size: x-large">source: <a href="https://www.w3.org/DesignIssues/Semantic.html">Semantic Web Road map: <i>A road map for the future, an architectural plan untested by anything except thought experiments.</i></a></div><br><br>
 
-					<div style="font-size: x-large;"><i>The Web was designed as an information space, with the goal that <b>it should be useful not only for human-human communication, but also that machines would be able to participate and help.</b> One of the major obstacles to this has been the fact that most information on the Web is designed for human consumption, and even if it was derived from a database with well defined meanings (in at least some terms) for its columns, that the structure of the data is not evident to a robot browsing the web. Leaving aside the artificial intelligence problem of training machines to behave like people, the Semantic Web approach instead develops languages for expressing information in a machine processable form. <br> <br>
+					<div style="font-size: xx-large;"><i>The Web was designed as an information space, with the goal that <b style="font-weight: bolder">it should be useful not only for human-human communication, but also that machines would be able to participate and help.</b> Leaving aside the artificial intelligence problem of training machines to behave like people, the Semantic Web approach instead develops languages for expressing information in a machine processable form. <br> <br>[...]</i></div>
+				</section>
 
-					This document gives a road map - a sequence for the incremental introduction of technology to take us, step by step, from the Web of today to a Web in which machine reasoning will be ubiquitous and devastatingly powerful. <br><br>[...]</i></div>
+				<section>
+					Ad oggi, il web non funziona così, ma gli stessi principi potrebbero tornarci utili in altri contesti. <br><br>
+
+					<fragment>Non solo per far capire ai programmi il linguaggio progettato per gli umani, ma anche per far capire agli umani un linguaggio progettato per le macchine</fragment>
 				</section>
 
 				<section>
@@ -274,45 +278,45 @@
 					<div style='font-size: medium; text-align: left; display: inline-block; width: 50%; float: left'>
 						Select&nbsp;?idVeicolo&nbsp;?inizioStato&nbsp;?fineStato&nbsp;?idFormalitaGeneratrice&nbsp;?idFormalitaOriginaria&nbsp;?codiceFormalitaOriginaria&nbsp;?dataAccettazioneFormalitaOriginaria&nbsp;?ufficioCompetenteFormalitaOriginaria&nbsp;?serieTarga&nbsp;?numeroTarga&nbsp;?serieTargaPrecedente&nbsp;?numeroTargaPrecedente&nbsp;?telaio&nbsp;?kw&nbsp;?cilindrata&nbsp;?peso&nbsp;?portata&nbsp;?tara&nbsp;?classe&nbsp;?uso&nbsp;?carrozzeria&nbsp;?specialita&nbsp;?alimentazione&nbsp;?alimentazioneDTT&nbsp;?dataImmatricolazione&nbsp;?codiceUltimaFormalitaDiParte&nbsp;?dataUltimaFormalitaDiParte
 <br>						where&nbsp;{&nbsp;
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?veicolo&nbsp;aci:ID_veicolo&nbsp;?idVeicolo.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?veicolo&nbsp;aci:ha_stato_di_veicolo&nbsp;?stato.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;a&nbsp;aci:Stato_rappresentato_valido.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:ha_targa&nbsp;?targa.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targa&nbsp;aci:numero_targa&nbsp;?numeroTarga.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targa&nbsp;aci:serie_targa&nbsp;?serieTarga.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:ha_formalita_originaria&nbsp;?formalitaOriginaria.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:ID_formalita&nbsp;?idFormalitaOriginaria.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:codice_tipo&nbsp;?codiceFormalitaOriginaria.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?evento&nbsp;aci:determina_stato&nbsp;?stato.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaGeneratrice&nbsp;aci:formalita_genera_evento&nbsp;?evento.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaGeneratrice&nbsp;aci:ID_formalita&nbsp;?idFormalitaGeneratrice.&nbsp;&nbsp;
-					<br>	&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:inizio_stato_del_mondo&nbsp;?inizioStato.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:fine_stato_del_mondo&nbsp;?fineStato.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:data_accettazione_formalita&nbsp;?dataAccettazioneFormalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?veicolo&nbsp;:ID_veicolo&nbsp;?idVeicolo.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?veicolo&nbsp;:ha_stato_di_veicolo&nbsp;?stato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;a&nbsp;:Stato_rappresentato_valido.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:ha_targa&nbsp;?targa.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targa&nbsp;:numero_targa&nbsp;?numeroTarga.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targa&nbsp;:serie_targa&nbsp;?serieTarga.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:ha_formalita_originaria&nbsp;?formalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;:ID_formalita&nbsp;?idFormalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;:codice_tipo&nbsp;?codiceFormalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?evento&nbsp;:determina_stato&nbsp;?stato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaGeneratrice&nbsp;:formalita_genera_evento&nbsp;?evento.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaGeneratrice&nbsp;:ID_formalita&nbsp;?idFormalitaGeneratrice.&nbsp;&nbsp;
+					<br>	&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:inizio_stato_del_mondo&nbsp;?inizioStato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:fine_stato_del_mondo&nbsp;?fineStato.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;:data_accettazione_formalita&nbsp;?dataAccettazioneFormalitaOriginaria.
 
 					</div>
 					<div style='font-size: medium; text-align: left; display: inline-block; width: 50%; float: right'>
 
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;aci:est_di_competenza_di_ufficio&nbsp;?ufficio.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?ufficio&nbsp;aci:descrizione_ufficio&nbsp;?ufficioCompetenteFormalitaOriginaria.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:codice_tipo_ultima_formalita_di_parte&nbsp;?codiceUltimaFormalitaDiParte.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:data_accettazione_ultima_formalita_di_parte&nbsp;?dataUltimaFormalitaDiParte.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:ha_targa_precedente&nbsp;?targaPrecedente.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targaPrecedente&nbsp;aci:numero_targa&nbsp;?numeroTargaPrecedente.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targaPrecedente&nbsp;&nbsp;aci:serie_targa&nbsp;?serieTargaPrecedente.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:numero_telaio&nbsp;?telaio.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:kw&nbsp;?kw.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:cilindrata&nbsp;?cilindrata.&nbsp;&nbsp;
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:peso_complessivo&nbsp;?peso.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:portata&nbsp;?portata.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:tara&nbsp;?tara.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:classe_veicolo&nbsp;?classe.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:destinazione_di_uso&nbsp;?uso.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:carrozzeria&nbsp;?carrozzeria.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:descrizione_specialita&nbsp;?specialita.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:data_immatricolazione&nbsp;?dataImmatricolazione.&nbsp;&nbsp;
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:alimentazione&nbsp;?alimentazione.
-<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;aci:alimentazione_DTT&nbsp;?alimentazioneDTT
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?formalitaOriginaria&nbsp;:est_di_competenza_di_ufficio&nbsp;?ufficio.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?ufficio&nbsp;:descrizione_ufficio&nbsp;?ufficioCompetenteFormalitaOriginaria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:codice_tipo_ultima_formalita_di_parte&nbsp;?codiceUltimaFormalitaDiParte.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:data_accettazione_ultima_formalita_di_parte&nbsp;?dataUltimaFormalitaDiParte.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:ha_targa_precedente&nbsp;?targaPrecedente.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targaPrecedente&nbsp;:numero_targa&nbsp;?numeroTargaPrecedente.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?targaPrecedente&nbsp;&nbsp;:serie_targa&nbsp;?serieTargaPrecedente.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:numero_telaio&nbsp;?telaio.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:kw&nbsp;?kw.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:cilindrata&nbsp;?cilindrata.&nbsp;&nbsp;
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:peso_complessivo&nbsp;?peso.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:portata&nbsp;?portata.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:tara&nbsp;?tara.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:classe_veicolo&nbsp;?classe.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:destinazione_di_uso&nbsp;?uso.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:carrozzeria&nbsp;?carrozzeria.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:descrizione_specialita&nbsp;?specialita.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:data_immatricolazione&nbsp;?dataImmatricolazione.&nbsp;&nbsp;
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:alimentazione&nbsp;?alimentazione.
+<br>						&nbsp;&nbsp;&nbsp;&nbsp;?stato&nbsp;:alimentazione_DTT&nbsp;?alimentazioneDTT
 <br>						&nbsp;&nbsp;&nbsp;&nbsp;FILTER(?idVeicolo&nbsp;&gt;=&nbsp;'99966200000'^^xsd:string&nbsp;&amp;&amp;&nbsp;?idVeicolo&nbsp;&lt;=&nbsp;'99966207000'^^xsd:string)
 <br>						&nbsp;}
 					</div>
